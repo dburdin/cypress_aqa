@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:qauto": "cypress run --config-file cypress.qauto.config.js",
+    "cy:qauto2": "cypress run --config-file cypress.qauto2.config.js",
+    "cy:qauto:open": "cypress open --config-file cypress.qauto.config.js",
+    "cy:qauto2:open": "cypress open --config-file cypress.qauto2.config.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +29,9 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-cypress": "^7.0.2",
     "globals": "^17.13.0",
+    "mochawesome": "^8.1.1",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2",
     "prettier": "^3.9.9"
   }
 }

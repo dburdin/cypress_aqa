@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-25T19:12:30.573Z",
+    "end": "2026-10-25T19:12:39.669Z",
+    "duration": 9096,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "fb7f7057-817a-4974-bf75-7f6ed67896a5",
+      "title": "",
+      "fullFile": "cypress\\e2e\\registration.cy.js",
+      "file": "cypress\\e2e\\registration.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d8be28bb-ac73-4ead-8616-382daa9e6e79",
+          "title": "Registration",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should show validation errors for empty required fields",
+              "fullTitle": "Registration should show validation errors for empty required fields",
+              "timedOut": null,
+              "duration": 2456,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#signupName').click().clear().blur();\ncy.contains('Name required').should('be.visible');\ncy.get('#signupName').should('have.class', 'is-invalid');\ncy.get('#signupLastName').click().clear().blur();\ncy.contains('Last name required').should('be.visible');\ncy.get('#signupEmail').click().clear().blur();\ncy.contains('Email required').should('be.visible');\ncy.get('#signupPassword').click().clear().blur();\ncy.contains('Password required').should('be.visible');\ncy.get('#signupRepeatPassword').click().clear().blur();\ncy.contains('Re-enter password required').should('be.visible');\ncy.get('.modal-footer .btn-primary').should('be.disabled');",
+              "err": {},
+              "uuid": "b4fffc97-6308-456e-a4ba-ce0c47eefcc0",
+              "parentUUID": "d8be28bb-ac73-4ead-8616-382daa9e6e79",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should validate name and last name",
+              "fullTitle": "Registration should validate name and last name",
+              "timedOut": null,
+              "duration": 1435,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#signupName').type('A').blur();\ncy.contains('Name has to be from 2 to 20 characters long').should('be.visible');\ncy.get('#signupName').clear().type('Name123').blur();\ncy.contains('Name is invalid').should('be.visible');\ncy.get('#signupLastName').type('B').blur();\ncy.contains('Last name has to be from 2 to 20 characters long').should('be.visible');\ncy.get('#signupLastName').clear().type('Last1').blur();\ncy.contains('Last name is invalid').should('be.visible');",
+              "err": {},
+              "uuid": "4b5fe6ea-f81a-4bbd-b551-1ba53250c0a4",
+              "parentUUID": "d8be28bb-ac73-4ead-8616-382daa9e6e79",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should validate email and password",
+              "fullTitle": "Registration should validate email and password",
+              "timedOut": null,
+              "duration": 1214,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#signupEmail').type('invalid-email').blur();\ncy.contains('Email is incorrect').should('be.visible');\ncy.get('#signupPassword').type('short', {\n  sensitive: true\n}).blur();\ncy.contains('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter').should('be.visible');\ncy.get('#signupPassword').clear().type('ValidPass1', {\n  sensitive: true\n});\ncy.get('#signupRepeatPassword').type('Different1', {\n  sensitive: true\n}).blur();\ncy.contains('Passwords do not match').should('be.visible');",
+              "err": {},
+              "uuid": "a749be5a-a5e6-4f48-9f32-4c63cdfc02c4",
+              "parentUUID": "d8be28bb-ac73-4ead-8616-382daa9e6e79",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should register a new user and login via custom command",
+              "fullTitle": "Registration should register a new user and login via custom command",
+              "timedOut": null,
+              "duration": 3745,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = `qa_${Date.now()}@test.com`;\nconst password = 'Qwerty123';\ncy.get('#signupName').type('John');\ncy.get('#signupLastName').type('Doe');\ncy.get('#signupEmail').type(email);\ncy.get('#signupPassword').type(password, {\n  sensitive: true\n});\ncy.get('#signupRepeatPassword').type(password, {\n  sensitive: true\n});\ncy.get('.modal-footer .btn-primary').should('not.be.disabled').click();\ncy.get('.sidebar').should('be.visible');\ncy.get('#userNavDropdown').click();\ncy.contains('Logout').click();\ncy.login(email, password);\ncy.get('.sidebar').should('be.visible');",
+              "err": {},
+              "uuid": "11bd2fd0-118b-45c4-85ca-d5b3714bc8af",
+              "parentUUID": "d8be28bb-ac73-4ead-8616-382daa9e6e79",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b4fffc97-6308-456e-a4ba-ce0c47eefcc0",
+            "4b5fe6ea-f81a-4bbd-b551-1ba53250c0a4",
+            "a749be5a-a5e6-4f48-9f32-4c63cdfc02c4",
+            "11bd2fd0-118b-45c4-85ca-d5b3714bc8af"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8850,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
