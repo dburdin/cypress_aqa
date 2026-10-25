@@ -17,3 +17,18 @@ Cypress.Commands.add('login', (email, password) => {
   cy.get('#signinPassword').type(password, { sensitive: true });
   cy.get('.modal-footer .btn-primary').contains('Login').click();
 });
+
+Cypress.Commands.add('createExpense', (carId, payload) => {
+  return cy.request({
+    method: 'POST',
+    url: '/api/expenses',
+    body: {
+      carId,
+      reportedAt: payload.reportedAt || '2026-10-25',
+      mileage: payload.mileage,
+      liters: payload.liters,
+      totalCost: payload.totalCost,
+      forceMileage: false,
+    },
+  });
+});

@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-10-25T19:29:59.441Z",
+    "end": "2026-10-25T19:30:04.077Z",
+    "duration": 4636,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8eb3c4cb-9044-4f9a-99f5-28b7e352f42b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\apiCarExpense.cy.js",
+      "file": "cypress\\e2e\\apiCarExpense.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fcc23545-4313-4987-bfd6-2b6969ff8fc0",
+          "title": "API car + expense",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "creates car via UI, intercepts id, validates via API, creates expense via API, checks in UI",
+              "fullTitle": "API car + expense creates car via UI, intercepts id, validates via API, creates expense via API, checks in UI",
+              "timedOut": null,
+              "duration": 4585,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', '/api/cars').as('createCar');\n_GaragePage.default.addCar(carData.brand, carData.model, carData.mileage);\ncy.wait('@createCar').then(interception => {\n  expect(interception.response.statusCode).to.eq(201);\n  createdCarId = interception.response.body.data.id;\n  expect(createdCarId).to.be.a('number');\n});\ncy.request('/api/cars').then(response => {\n  expect(response.status).to.eq(200);\n  const car = response.body.data.find(c => c.id === createdCarId);\n  expect(car).to.exist;\n  expect(car.brand).to.eq(carData.brand);\n  expect(car.model).to.eq(carData.model);\n  expect(car.mileage).to.eq(Number(carData.mileage));\n});\ncy.createExpense(createdCarId, expenseData).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.status).to.eq('ok');\n  expect(response.body.data.carId).to.eq(createdCarId);\n  expect(response.body.data.mileage).to.eq(expenseData.mileage);\n  expect(response.body.data.liters).to.eq(expenseData.liters);\n  expect(response.body.data.totalCost).to.eq(expenseData.totalCost);\n});\n_ExpensesPage.default.open();\ncy.contains('Audi TT').should('be.visible');\ncy.get('table').should('contain', expenseData.liters);\ncy.get('table').should('contain', expenseData.totalCost);",
+              "err": {
+                "message": "CypressError: `cy.request()` failed on:\n\nhttps://qauto.forstudy.space/api/expenses\n\nThe response we received from your web server was:\n\n  > 400: Bad Request\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://qauto.forstudy.space/api/expenses\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/16.1.1 Chrome/146.0.7680.216 Electron/41.7.0 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"cookie\": \"sid=s%3AoAmBLJYHxi0E5Zf0pVrHuBhDcUvKRSeV.NvasogWiSv%2BI7QD%2BrhMOV%2BiwGYnOVl%2FQjZelBXCxyj0\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-type\": \"application/json\",\n  \"content-length\": 93\n}\nBody: {\"reportedAt\":\"2026-10-25\",\"mileage\":13000,\"liters\":45,\"totalCost\":2000,\"forceMileage\":false}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 400 - Bad Request\nHeaders: {\n  \"server\": \"nginx\",\n  \"date\": \"Sun, 25 Oct 2026 19:30:02 GMT\",\n  \"content-type\": \"application/json; charset=utf-8\",\n  \"content-length\": \"49\",\n  \"connection\": \"keep-alive\",\n  \"x-powered-by\": \"Express\",\n  \"vary\": \"Origin\",\n  \"access-control-allow-credentials\": \"true\",\n  \"etag\": \"W/\\\"31-YhqyoKgd49SnwKFg03W7IyY3Dlo\\\"\"\n}\nBody: {\n  \"status\": \"error\",\n  \"message\": \"Car id is required\"\n}\n\n\nhttps://on.cypress.io/request",
+                "estack": "CypressError: `cy.request()` failed on:\n\nhttps://qauto.forstudy.space/api/expenses\n\nThe response we received from your web server was:\n\n  > 400: Bad Request\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://qauto.forstudy.space/api/expenses\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/16.1.1 Chrome/146.0.7680.216 Electron/41.7.0 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"cookie\": \"sid=s%3AoAmBLJYHxi0E5Zf0pVrHuBhDcUvKRSeV.NvasogWiSv%2BI7QD%2BrhMOV%2BiwGYnOVl%2FQjZelBXCxyj0\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-type\": \"application/json\",\n  \"content-length\": 93\n}\nBody: {\"reportedAt\":\"2026-10-25\",\"mileage\":13000,\"liters\":45,\"totalCost\":2000,\"forceMileage\":false}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 400 - Bad Request\nHeaders: {\n  \"server\": \"nginx\",\n  \"date\": \"Sun, 25 Oct 2026 19:30:02 GMT\",\n  \"content-type\": \"application/json; charset=utf-8\",\n  \"content-length\": \"49\",\n  \"connection\": \"keep-alive\",\n  \"x-powered-by\": \"Express\",\n  \"vary\": \"Origin\",\n  \"access-control-allow-credentials\": \"true\",\n  \"etag\": \"W/\\\"31-YhqyoKgd49SnwKFg03W7IyY3Dlo\\\"\"\n}\nBody: {\n  \"status\": \"error\",\n  \"message\": \"Car id is required\"\n}\n\n\nhttps://on.cypress.io/request\n    at <unknown> (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:134346:72)\n    at tryCatcher (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:1780:23)\n    at Promise._settlePromiseFromHandler (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:1492:31)\n    at Promise._settlePromise (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:1549:18)\n    at Promise._settlePromise0 (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:1594:10)\n    at Promise._settlePromises (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:1674:18)\n    at _drainQueueStep (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:2380:12)\n    at _drainQueue (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:2373:9)\n    at Async._drainQueues (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:2389:5)\n    at Async.drainQueues (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:2259:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://cypress_aqa/./cypress/e2e/apiCarExpense.cy.js:56:6)\n    at getRet (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:120751:20)\n    at tryCatcher (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:1780:23)\n    at Promise.attempt.Promise.try (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:4288:29)\n    at Context.thenFn (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:120763:66)\n    at Context.then (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:121014:21)\n    at wrapped (https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:146077:19)",
+                "diff": null
+              },
+              "uuid": "d337bfe1-4704-4148-b36f-8482ad97fcd5",
+              "parentUUID": "fcc23545-4313-4987-bfd6-2b6969ff8fc0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d337bfe1-4704-4148-b36f-8482ad97fcd5"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 4585,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
