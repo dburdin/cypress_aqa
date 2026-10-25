@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-25T19:12:27.184Z",
+    "end": "2026-10-25T19:12:29.323Z",
+    "duration": 2139,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "174b5e9a-bfe1-4113-9b77-dc29c543a8ac",
+      "title": "",
+      "fullFile": "cypress\\e2e\\headerFooter.cy.js",
+      "file": "cypress\\e2e\\headerFooter.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e13f4751-0a13-4d06-b5c1-68b656439ea3",
+          "title": "Header and Footer elements",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should find all header buttons and links",
+              "fullTitle": "Header and Footer elements should find all header buttons and links",
+              "timedOut": null,
+              "duration": 1347,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header_logo').should('be.visible');\ncy.contains('a.header-link', 'Home').should('be.visible');\ncy.contains('button.header-link', 'About').should('be.visible');\ncy.contains('button.header-link', 'Contacts').should('be.visible');\ncy.contains('button.header-link', 'Guest log in').should('be.visible');\ncy.get('.header_signin').should('be.visible').and('contain', 'Sign In');",
+              "err": {},
+              "uuid": "89eb0d75-cdc5-4f5c-a73c-55d42eba1211",
+              "parentUUID": "e13f4751-0a13-4d06-b5c1-68b656439ea3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should find all footer links",
+              "fullTitle": "Header and Footer elements should find all footer links",
+              "timedOut": null,
+              "duration": 629,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const socialLinks = ['https://www.facebook.com/Hillel.IT.School', 'https://t.me/ithillel_kyiv', 'https://www.youtube.com/user/HillelITSchool?sub_confirmation=1', 'https://www.instagram.com/hillel_itschool/', 'https://www.linkedin.com/school/ithillel/'];\ncy.get('.socials_link').should('have.length', 5).and('be.visible').each(($link, index) => {\n  cy.wrap($link).should('have.attr', 'href', socialLinks[index]).and('have.attr', 'target', '_blank');\n});\ncy.contains('a', 'ithillel.ua').should('be.visible').and('have.attr', 'href').and('include', 'ithillel.ua');\ncy.contains('a', 'support@ithillel.ua').should('be.visible').and('have.attr', 'href', 'mailto:developer@ithillel.ua');",
+              "err": {},
+              "uuid": "46fdbe0d-a4b8-4be8-be0e-fa50c5625a5f",
+              "parentUUID": "e13f4751-0a13-4d06-b5c1-68b656439ea3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "89eb0d75-cdc5-4f5c-a73c-55d42eba1211",
+            "46fdbe0d-a4b8-4be8-be0e-fa50c5625a5f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1976,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
